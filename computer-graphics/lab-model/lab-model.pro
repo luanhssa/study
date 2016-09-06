@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         window.cpp \
     glwidget.cpp \
-    camera.cpp
+    camera.cpp \
+    latimmodel.cpp
 
 HEADERS  += window.h \
     glwidget.h \
-    camera.h
+    camera.h \
+    latimmodel.h
 
 FORMS    += window.ui
 

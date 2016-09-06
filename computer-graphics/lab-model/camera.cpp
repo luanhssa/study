@@ -2,8 +2,8 @@
 
 Camera::Camera()
 {
-    this->eye = Vec3(1.5f, 1.5f, -2.0f);
-    this->view = Vec3(2.2f, 1.0f, 0.0f);
+    this->eye = Vec3(1.5f, 2.0f, -2.0f);
+    this->view = Vec3(2.2f, 1.5f, 0.0f);
     this->up = Vec3(0.0f, 1.0f, 0.0f);
 }
 
@@ -25,8 +25,8 @@ void Camera::rotateView(GLdouble speed)
     GLdouble aux_x = view.x - eye.x;
     GLdouble aux_z = view.z - eye.z;
 
-    view.z = (float)(eye.z + sin(speed)*aux_x + cos(speed)*aux_z);
     view.x = (float)(eye.x + cos(speed)*aux_x - sin(speed)*aux_z);
+    view.z = (float)(eye.z + sin(speed)*aux_x + cos(speed)*aux_z);
 }
 
 void Camera::moveMouse(int x, int y, int width, int height)
@@ -40,10 +40,10 @@ void Camera::moveMouse(int x, int y, int width, int height)
 
     // Get the direction from the mouse cursor, set a resonable maneuvering speed
     angle_y = (float)( (mid_x - x) ) / 10000;
-    angle_z = (float)( (mid_y - y) ) / 10000;
+    angle_z = (float)( (mid_y - y) ) / 10;
 
     // The higher the value is the faster the camera looks around.
-    view.y += angle_z * 0.01;
+    view.y += angle_z * 0.001;
 
     // limit the rotation around the x-axis
     int limit = 10000;
@@ -65,4 +65,14 @@ void Camera::moveSideways(int direction)
     eye.z  = eye.z  + ortho_z * speed;
     view.x = view.x + ortho_x * speed;
     view.z = view.z + ortho_z * speed;
+}
+
+void Camera::moveUp(int direction)
+{
+    GLdouble speed = direction * MOVESPEED;
+    GLdouble aux_y = view.y - eye.y;
+
+
+    eye.y  = eye.y  + aux_y * speed;
+    view.y = view.y + aux_y * speed;
 }

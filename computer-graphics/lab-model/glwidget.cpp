@@ -30,7 +30,7 @@ void GLWidget::paintGL()
     glLoadIdentity();
 
 
-    gluPerspective(60.0, (GLfloat) width() / (GLfloat) height(), 0.1, 50.0);
+    gluPerspective(60.0, (GLfloat) width() / (GLfloat) height(), 0.01, 50.0);
     gluLookAt(cam.eye.x, cam.eye.y, cam.eye.z, cam.view.x, cam.view.y, cam.view.z, cam.up.x, cam.up.y, cam.up.z);
 
     glPolygonMode(polygonFace, polygonMode);

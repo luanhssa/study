@@ -54,8 +54,10 @@ private:
     GLdouble desk_y = 0.7f;
 
 
-    void drawHexahedron(GLdouble width, GLdouble height, GLdouble depth);
-    void drawRect(GLdouble p1_x, GLdouble p1_y, GLdouble p1_z,
+    void cylinder3d(GLdouble radius, GLdouble width, bool bottom, bool top);
+    void halfCylinder3d(GLdouble radius, GLdouble width, bool bottom, bool top);
+    void hexahedron3d(GLdouble width, GLdouble height, GLdouble depth);
+    void rect3d(GLdouble p1_x, GLdouble p1_y, GLdouble p1_z,
                   GLdouble p2_x, GLdouble p2_y, GLdouble p2_z,
                   GLdouble p3_x, GLdouble p3_y, GLdouble p3_z,
                   GLdouble p4_x, GLdouble p4_y, GLdouble p4_z);
@@ -72,6 +74,8 @@ private:
     void drawMonitor(GLdouble x, GLdouble y, GLdouble z);
     void drawBlackboard();
     void drawCeiling();
+    void drawLamp(GLdouble radius, GLdouble width);
+    void drawLamps();
 };
 
 #endif // CEPETECBUILD_H

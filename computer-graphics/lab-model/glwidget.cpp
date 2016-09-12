@@ -127,6 +127,16 @@ void GLWidget::keyPressEvent(QKeyEvent *e)
         polygonFace = GL_FRONT_AND_BACK;
         polygonMode = GL_LINE;
         break;
+    case Qt::Key_F3:
+        //LINE FRONT_AND_BACK
+        polygonFace = GL_FRONT;
+        polygonMode = GL_FILL;
+        break;
+    case Qt::Key_F4:
+        //LINE FRONT_AND_BACK
+        polygonFace = GL_BACK;
+        polygonMode = GL_FILL;
+        break;
     default:
         e->ignore();
     }

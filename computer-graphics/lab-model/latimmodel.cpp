@@ -2,12 +2,12 @@
 
 LaTIMModel::LaTIMModel()
 {
-    wall1 = Object(5.90f, 3.0f, 0.10f);
-    wall2 = Object(6.80f, 3.0f, 0.10f);
+    wall1 = Object(6.90f, 3.0f, 0.10f);
+    wall2 = Object(7.80f, 3.0f, 0.10f);
     deskArm = Object(1.40f, 0.05f, 0.55f);
     deskCen = Object(1.0f, 0.05f, 0.55f);
     nDeskR = Object(4.16f, 0.05f, 0.55f);
-    nDeskL = Object(1.33f, 0.05f, 0.55f);
+    nDeskL = Object(1.83f, 0.05f, 0.55f);
     deskDiv1 = Object(2.95f, 1.20f, 0.05f);
     deskDiv2 = Object(4.25f, 1.20f, 0.05f);
     cabinet1 = Object(0.80f, 2.08f, 0.57f);
@@ -22,7 +22,6 @@ LaTIMModel::LaTIMModel()
 void LaTIMModel::draw()
 {
     glPushMatrix();
-
     //door
     drawDoor();
 
@@ -54,10 +53,10 @@ void LaTIMModel::draw()
 void LaTIMModel::drawHexahedron(GLdouble w, GLdouble h, GLdouble d)
 {
     //front side
-    drawRect(0.0f, 0.0f, 0.0f,
-                w, 0.0f, 0.0f,
-                w,    h, 0.0f,
-             0.0f,    h, 0.0f);
+    drawRect(   w, 0.0f, 0.0f,
+             0.0f, 0.0f, 0.0f,
+             0.0f,    h, 0.0f,
+                w,    h, 0.0f);
 
     //back side
     drawRect(0.0f, 0.0f,    d,
@@ -79,16 +78,15 @@ void LaTIMModel::drawHexahedron(GLdouble w, GLdouble h, GLdouble d)
 
     //bottom side
     drawRect(0.0f, 0.0f, 0.0f,
-             0.0f, 0.0f,    d,
+                w, 0.0f, 0.0f,
                 w, 0.0f,    d,
-                w, 0.0f, 0.0f);
+             0.0f, 0.0f,    d);
 
     //top side
-    drawRect(0.0f,    h, 0.0f,
-                w,    h, 0.0f,
-                w,    h,    d,
-             0.0f,    h,    d);
-
+    drawRect(   w,    h, 0.0f,
+             0.0f,    h, 0.0f,
+             0.0f,    h,    d,
+                w,    h,    d);
 }
 
 void LaTIMModel::drawRect(GLdouble p1_x, GLdouble p1_y, GLdouble p1_z,

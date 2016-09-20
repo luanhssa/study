@@ -25,4 +25,10 @@ HEADERS  += window.h \
 
 FORMS    += window.ui
 
-LIBS += -lglut -lGL -lGLU -lm
+win32|win64 {
+    LIBS += -m32 -lglut -lopengl32 -lGlu32 -lm
+}
+
+unix {
+    LIBS += -lglut -lGL -lGLU -lm
+}

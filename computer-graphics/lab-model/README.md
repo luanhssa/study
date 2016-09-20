@@ -1,21 +1,25 @@
-Baseball Field
+Modelando um Laboratório
 ===
-> **Objetivo**:
-
-> Avaliar a diferença de precisão usando o algoritmo do Ponto Médio proposto por Bresenham.
 
 ---
+## Requisitos Parte 1
 
-Instruções:
+- A fachada externa;
 
-a) Desenhar um campo de basebol usando as equações da reta e de circunferência;  
+- O interior do Lab.;
 
-b) Desenhar o campo de basebol usando Bresenham: retas e circunferências;  
+- 5 objetos do Lab;
 
-c) A arquibancada será desenhada pelo usuário que irá clicar em pontos da tela e a partir destes pontos será traçado retas que definirão o objeto;
+- 1 Porta;
 
-d) O usuário irá selecionar entre os algoritmos de Bresenham ou eq. da reta para realizar o traçado;
+- O usuário irá navegar com o teclado/mouse na modelagem permitindo ao usuário visualizar a parte externa e interna do Lab;
 
-c) Através da interface, o usuário definirá a cor das retas e a espessura;
+- A porta do Lab deverá ser aberta ou fechada através da ação de um botão criado em uma interface gráfica.
 
-f) É obrigatório o uso do Opengl e um framework de janelas (QT,FLTK,JAVA-SWING, etc) para realizar o projeto.
+## Requisitos Parte 2
+
+- Refinar a modelagem realizada no primeiro Bimestre;
+
+- Aplicar Iluminação a modelagem;
+
+- Aplicar mapeamento de textura;

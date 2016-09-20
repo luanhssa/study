@@ -24,7 +24,6 @@ public:
     void paintGL() Q_DECL_OVERRIDE;
     void resizeGL(int w, int h) Q_DECL_OVERRIDE;
 
-    void drawPyramid();
     void drawFloor();
 
 protected:

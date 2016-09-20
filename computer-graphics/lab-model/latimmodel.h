@@ -1,5 +1,5 @@
-#ifndef CEPETECBUILD_H
-#define CEPETECBUILD_H
+#ifndef LATIM_H
+#define LATIM_H
 
 #include <QtOpenGL>
 
@@ -45,6 +45,7 @@ private:
             door,
             computer1,
             window1,
+            window2,
             blackboard,
             chair1;
 
@@ -68,14 +69,14 @@ private:
     void drawCabinets();
     void drawDesks();
     void drawShelf();
-    void drawWindows();
+    void drawWindow();
     void drawComputers();
     void drawCPU(GLdouble x, GLdouble y, GLdouble z);
     void drawMonitor(GLdouble x, GLdouble y, GLdouble z);
-    void drawBlackboard();
+    void drawWhiteboard();
     void drawCeiling();
     void drawLamp(GLdouble radius, GLdouble width);
     void drawLamps();
 };
 
-#endif // CEPETECBUILD_H
+#endif // LATIM_H

@@ -1,7 +1,7 @@
 #include "glwidget.h"
 #include <QtGui/QOpenGLContext>
 #include <QtGui/QOpenGLPaintDevice>
-#include <GL/glut.h>
+#include <GL/glu.h>
 #include <QKeyEvent>
 #include <iostream>
 #include <QOpenGLWindow>
@@ -35,10 +35,8 @@ void GLWidget::paintGL()
 
     glPolygonMode(polygonFace, polygonMode);
     drawFloor();
-    //drawTriangle();
     latim.draw();
 
-    swapBuffers();
 }
 
 void GLWidget::resizeGL(int w, int h)
@@ -48,54 +46,16 @@ void GLWidget::resizeGL(int w, int h)
 
 void GLWidget::drawFloor()
 {
-    int size = 100;
+    int size = 30;
     for(float i = -size; i <= size; i += 5) {
-          glBegin(GL_LINES);
-              glColor3ub(150, 190, 150);
+          glBegin(GL_QUADS);
+              glColor3ub(214, 198, 188);
               glVertex3f(-size, 0, i);
               glVertex3f(size, 0, i);
               glVertex3f(i, 0,-size);
               glVertex3f(i, 0, size);
           glEnd();
       }
-}
-
-void GLWidget::drawPyramid()
-{
-
-    glBegin(GL_TRIANGLES);           // Begin drawing the pyramid with 4 triangles
-       // Front
-       glColor3f(1.0f, 0.0f, 0.0f);     // Red
-       glVertex3f( 1.0f, 2.0f, 1.0f);
-       glColor3f(0.0f, 1.0f, 0.0f);     // Green
-       glVertex3f(0.0f, 0.0f, 2.0f);
-       glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-       glVertex3f(2.0f, 0.0f, 2.0f);
-
-       // Right
-       glColor3f(1.0f, 0.0f, 0.0f);     // Red
-       glVertex3f(1.0f, 2.0f, 1.0f);
-       glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-       glVertex3f(2.0f, 0.0f, 2.0f);
-       glColor3f(0.0f, 1.0f, 0.0f);     // Green
-       glVertex3f(2.0f, 0.0f, 0.0f);
-
-       // Back
-       glColor3f(1.0f, 0.0f, 0.0f);     // Red
-       glVertex3f(1.0f, 2.0f, 1.0f);
-       glColor3f(0.0f, 1.0f, 0.0f);     // Green
-       glVertex3f(2.0f, 0.0f, 0.0f);
-       glColor3f(0.0f, 0.0f, 1.0f);     // Blue
-       glVertex3f(0.0f, 0.0f, 0.0f);
-
-       // Left
-       glColor3f(1.0f,0.0f,0.0f);       // Red
-       glVertex3f(1.0f, 2.0f, 1.0f);
-       glColor3f(0.0f,0.0f,1.0f);       // Blue
-       glVertex3f(0.0f, 0.0f, 0.0f);
-       glColor3f(0.0f,1.0f,0.0f);       // Green
-       glVertex3f(0.0f, 0.0f, 2.0f);
-    glEnd();   // Done drawing the pyramid
 }
 
 void GLWidget::keyPressEvent(QKeyEvent *e)
@@ -158,19 +118,8 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
         latim.moveDoor();
-/*
-        latim.doorPos *= -1;
-        if(latim.doorPos > 0) {
-            for(GLdouble i = 0.1f; latim.doorAngle <= 0.0f; latim.doorAngle += i) {
-                paintGL();
-            }
-        } else {
-            for(GLdouble i = 0.1f; latim.doorAngle >= -80.0f; latim.doorAngle -= i) {
-                paintGL();
-            }
-        }
-*/
     }
+
     update();
 }
 

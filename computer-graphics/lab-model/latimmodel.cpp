@@ -1,5 +1,6 @@
 #include "latimmodel.h"
 #include <math.h>
+#include <iostream>
 
 LaTIMModel::LaTIMModel()
 {
@@ -15,7 +16,8 @@ LaTIMModel::LaTIMModel()
     cabinet2 = Object(1.0f, 2.20f, 0.57f);
     door = Object(1.0f, 2.20f, 0.05f);
     computer1 = Object();
-    window1 = Object();
+    window1 = Object(0.575f, 1.15f, 0.10f);
+    window2 = Object(0.575f, 0.575f, 0.10f);
     blackboard = Object(3.0f, 1.40f, 0.08f);
     chair1 = Object();
 }
@@ -43,7 +45,7 @@ void LaTIMModel::draw()
     drawComputers();
 
     //Blackboard
-    drawBlackboard();
+    drawWhiteboard();
 
     //Ceiling
     drawCeiling();
@@ -330,9 +332,24 @@ void LaTIMModel::drawWalls()
 
     //Wall1 (windows)
     //front wall
+    //space between windows
+    GLdouble space = (wall1.w - (window1.w*4)*2) / 3;
     glTranslated(0.0f, 0.0f, (wall2.w - wall2.d));
-    hexahedron3d(wall1.w, wall1.h, wall1.d);
-    glTranslated(0.0f, 0.0f, -(wall2.w - wall2.d));
+    hexahedron3d(space, wall1.h, wall1.d);
+    glTranslated(space, 0.0f, 0.0f);
+    hexahedron3d((window1.w*4), 1.0f, wall1.d);
+    //draw right window
+    drawWindow();
+    glTranslated((window1.w*4), 0.0f, 0.0f);
+    hexahedron3d(space, wall1.h, wall1.d);
+    glTranslated(space, 0.0f, 0.0f);
+    hexahedron3d((window1.w*4), 1.0f, wall1.d);
+    //draw left window
+    drawWindow();
+    glTranslated((window1.w*4), 0.0f, 0.0f);
+    hexahedron3d(space, wall1.h, wall1.d);
+
+    glTranslated(-((window1.w*8) + space*2), 0.0f, -(wall2.w - wall2.d));
 
     //Wall2 (in front of the AC wall)
     glTranslated(wall1.w, 0.0f, wall2.w);
@@ -525,7 +542,7 @@ void LaTIMModel::drawMonitor(GLdouble x, GLdouble y, GLdouble z)
 
 }
 
-void LaTIMModel::drawBlackboard()
+void LaTIMModel::drawWhiteboard()
 {
     glPushMatrix();
 
@@ -566,9 +583,25 @@ void LaTIMModel::drawCeiling()
     glPopMatrix();
 }
 
-void LaTIMModel::drawWindows()
+void LaTIMModel::drawWindow()
 {
+    glPushMatrix();
 
+    glTranslated(0.0f, 1.0f, 0.0f);
+    //drawWindow1
+    glTranslated(0.0f, window1.h, 0.0f);
+    hexahedron3d((window1.w*4), 0.10f, wall1.d);
+    glTranslated(0.0f, 0.10f, 0.0f);
+    //drawWindow2
+    glTranslated(0.0f, window2.h, 0.0f);
+    hexahedron3d((window1.w*4), (wall1.h - 1.10f - window1.h - window2.h), wall1.d);
+
+    glTranslated(0.0f, -window2.h, 0.0f);
+    glTranslated(0.0f, -0.10f, 0.0f);
+    glTranslated(0.0f, -window1.h, 0.0f);
+    glTranslated(0.0f, -1.0f, 0.0f);
+
+    glPopMatrix();
 }
 
 void LaTIMModel::drawLamp(GLdouble radius, GLdouble width)

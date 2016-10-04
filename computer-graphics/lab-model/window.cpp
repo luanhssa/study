@@ -5,8 +5,8 @@ Window::Window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    //ui->setupUi(this);
-    showFullScreen();
+    QTimer::singleShot(1, this, SLOT(showFullScreen()));
+    //showFullScreen();
     GLWidget *w = new GLWidget();
     setCentralWidget(w);
 }
